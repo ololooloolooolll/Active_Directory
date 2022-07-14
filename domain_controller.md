@@ -8,7 +8,7 @@
 Windows Server:
 
 ```
-	PS > Enable-PSRemoting
+PS > Enable-PSRemoting
 ```
 
 **No output, no response, assume it worked**
@@ -18,14 +18,14 @@ Windows Server:
 Add a trusted host and connect to it:
 
 ```
-	PS C:\Users\User> get-item wsman:\localhost\
-	PS C:\Users\User> Start-Service WinRM
-	PS C:\Users\User> ls wsman:\localhost\Client\TrustedHosts
-	PS C:\Users\User> set-item wsman:\localhost\Client\TrustedHosts -value 192.168.111.139
-	Y
-	PS C:\Users\User> New-PSSession -ComputerName 192.168.111.139 -Credentials (Get-Credential)
-	PS C:\Users\User> Enter-PSSession 1
-	PS C:\Users\Administrator\Documents>
+PS C:\Users\User> get-item wsman:\localhost\
+PS C:\Users\User> Start-Service WinRM
+PS C:\Users\User> ls wsman:\localhost\Client\TrustedHosts
+PS C:\Users\User> set-item wsman:\localhost\Client\TrustedHosts -value 192.168.111.139
+Y
+PS C:\Users\User> New-PSSession -ComputerName 192.168.111.139 -Credentials (Get-Credential)
+PS C:\Users\User> Enter-PSSession 1
+PS C:\Users\Administrator\Documents>
 ```
 
 5. Installing Active Directory on Windows Server 2022
@@ -35,29 +35,30 @@ Add a trusted host and connect to it:
 Use the `sconfig` tool to change hostname, static ip and dns setings:
 
 ```
-	>sconfig 
-	>2
-	>DC-01
-	>Y
-	
-	>sconfig
-	>8
-	>1
-	>S
-	>192.168.111.239
-	>255.255.255.0
-	>192.168.111.1
-	> 2)Set DNS servers
-	> 192.168.111.239
+>sconfig 
+>2
+>DC-01
+>Y
+>sconfig
+>8
+>1
+>S
+>192.168.111.239
+>255.255.255.0
+>192.168.111.1
+> 2)Set DNS servers
+> 192.168.111.239
 ```
 
 	
 6. From the Gui, change the TrustedHosts
 
-	PS C:\Users\User> set-item wsman:\localhost\Client\TrustedHosts -value 192.168.111.239
-	PS C:\Users\User> Enter-PSSession 192.168.111.239 (Get-Credential)
-	PS C:\Users\Administrator\Documents> Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
-	
+```
+PS C:\Users\User> set-item wsman:\localhost\Client\TrustedHosts -value 192.168.111.239
+PS C:\Users\User> Enter-PSSession 192.168.111.239 (Get-Credential)
+PS C:\Users\Administrator\Documents> Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+```
+
 7. Install ADDS
 
 ```
