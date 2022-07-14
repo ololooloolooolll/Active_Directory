@@ -74,5 +74,11 @@ Y
 
 Use sconfig to set it, once again to 192.168.111.239
 
-
-
+9. Set the DNS server on the windows 11
+```
+PS C:\Users\User> Get-NetIPAddress
+PS C:\Users\User> Get-DnsClientServerAddress
+PS C:\Users\User> Set-DnsClientServerAddress -InterfaceIndex 4 -ServerAddresses 192.168.111.239
+PS C:\Users\User>Add-Computer -DomainName mydomain.local -Credential mydomain\Administrator -Force -Restart
+*******
+```
